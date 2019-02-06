@@ -177,10 +177,9 @@ func (a *Action) setup() error {
 		return err
 	}
 
-	err = a.copyOverrideFilesIntoSourceDir()
-	if err != nil {
+	if err := copyOverrideFilesIntoSourceDir(a.Model.ModuleOverrideFiles); err != nil {
 		return err
-	}	
+	}
 
 	if err := a.Client.InitWithBackend(); err != nil {
 		return err
@@ -231,8 +230,8 @@ func copyOverrideFilesIntoSource(overrideFiles []string, sourceDir string) error
 	return nil
 }
 
-func (a *Action) copyOverrideFilesIntoSourceDir() error {
-	for i, overrideMap := range a.Client.Model.ModuleOverrideFiles {
+func copyOverrideFilesIntoSourceDir(ModuleOverrideFiles []map[string]string) error {
+	for i, overrideMap := range ModuleOverrideFiles {
 
 		overrideSrcPath, ok := overrideMap["src"]
 		if !ok{
