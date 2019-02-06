@@ -18,7 +18,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("Out Plan", func() {
+var _ = Describe("Out Legacy Storage Plan", func() {
 
 	var (
 		envName       string
@@ -170,7 +170,6 @@ var _ = Describe("Out Plan", func() {
 			planFilePath,
 		)
 		Expect(err).ToNot(HaveOccurred())
-
 	})
 
 	It("takes the existing statefile into account when generating a plan", func() {
